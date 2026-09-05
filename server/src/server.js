@@ -1,6 +1,9 @@
 import app from "./app/app.js";
+import config from "./config/config.js";
+import { connectDB } from "./config/db.js";
 
-const port = 3000
+await connectDB()
+const port = config.PORT
 
 app.listen(port,()=>{
     console.log(`server is running on ${port}`)
