@@ -1,32 +1,16 @@
 import { motion } from "motion/react";
 import { FcGoogle } from "react-icons/fc";
+import Feacture from "../components/Feacture";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../utils/firebase";
 const Auth = () => {
-  function Feacture({ icon, title, desc }) {
-    return (
-      <motion.div
-        whileHover={{
-          y: -12,
-          rotateX: 8,
-          rotateY: -8,
-          scale: 1.05,
-        }}
-        transition={{ type: "spring", stiffness: 200, damping: 18 }}
-        className="relative rounded-2xl p-6 bg-gradient-to-br from-black/90 via-black/80 to-black/90 backdrop-blur-2xl border border-white/10
-        shadow-[0_30px_80px_rgba(0,0,0,0.7)]
-            text-white
-            "
-        style={{ transformStyle: "preserve-3d" }}>
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity pointer-events-none" />
-        <div
-          className="relative z-10"
-          style={{ transform: "translateZ(30px)" }}>
-          <div className="text-4xl mb-3">{icon}</div>
-          <h3 className="text-lg font-semibold mb-2">{title}</h3>
-          <p className="text-gray-300 text-sm leading-relaxed">{desc}</p>
-        </div>
-      </motion.div>
-    );
-  }
+  const handelGoogleAuth = async () => {
+    try {
+        const res = await signInWithPopup(auth,provider)
+    } catch (error) {
+        console.log("error in auth",error)
+    }
+  };
 
   return (
     <div className="min-h-screen overflow-hidden bg-white text-black px-8">
@@ -96,15 +80,35 @@ const Auth = () => {
 
         {/* RIGHT CONTENT */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          <Feacture icon="🎁" title="50 free created" desc="Start with 50 credits to generate notes without paying." />
+          <Feacture
+            icon="🎁"
+            title="50 free created"
+            desc="Start with 50 credits to generate notes without paying."
+          />
 
-           <Feacture icon="📝" title="Exam Notes" desc="High-yield,revision-ready." />
+          <Feacture
+            icon="📝"
+            title="Exam Notes"
+            desc="High-yield,revision-ready."
+          />
 
-            <Feacture icon="📂" title="Project Notes" desc="Well-structured documentation for assignments & projects." />
+          <Feacture
+            icon="📂"
+            title="Project Notes"
+            desc="Well-structured documentation for assignments & projects."
+          />
 
-             <Feacture icon="📊" title="Charts & Graphs" desc="Auto-enerated diagrams, charts and flow graphs." />
+          <Feacture
+            icon="📊"
+            title="Charts & Graphs"
+            desc="Auto-enerated diagrams, charts and flow graphs."
+          />
 
-              <Feacture icon="⬇️" title="Free PDF Download" desc="Download clean, printable PDFs instantly." />
+          <Feacture
+            icon="⬇️"
+            title="Free PDF Download"
+            desc="Download clean, printable PDFs instantly."
+          />
         </div>
       </main>
     </div>
