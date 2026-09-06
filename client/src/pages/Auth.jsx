@@ -7,6 +7,8 @@ const Auth = () => {
   const handelGoogleAuth = async () => {
     try {
         const res = await signInWithPopup(auth,provider)
+        const user = res.user
+        
        
     } catch (error) {
         console.log("error in auth",error)
