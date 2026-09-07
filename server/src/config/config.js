@@ -13,10 +13,15 @@ if (!process.env.JWT_SECRET) {
   throw new Error("JWT_SECRET is not defined in environment variable");
 }
 
+if (!process.env.CLIEN_URL) {
+  throw new Error("CLIEN_URL is not defined in environment variable");
+}
+
 const config = {
   PORT: process.env.PORT,
   MONGODB_URI: process.env.MONGODB_URI,
   JWT_SECRET: process.env.JWT_SECRET,
+  CLIEN_URL: process.env.CLIEN_URL,
 };
 
 export default config;
