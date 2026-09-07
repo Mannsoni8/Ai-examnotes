@@ -9,7 +9,7 @@ export const googleAuthController = async (req, res) => {
       user = await userModel.create({ name, email });
     }
     let token = await getToken(user._id);
-    res.cookies("token", token, {
+    res.cookie("token", token, {
       httpOnly: true,
       secure: false,
       samesite: "strict",

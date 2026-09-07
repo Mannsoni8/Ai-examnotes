@@ -11,15 +11,15 @@ const Auth = () => {
       const user = res.user;
       const name = user.displayName;
       const email = user.email;
-      const ress = await api.post("/google", {
+      const result = await api.post("/google", {
         name,
         email,
       });
+      console.log(result.data);
     } catch (error) {
       console.log("error in auth", error);
     }
   };
-
   return (
     <div className="min-h-screen overflow-hidden bg-white text-black px-8">
       <motion.header
@@ -52,6 +52,7 @@ const Auth = () => {
           </h1>
 
           <motion.button
+            onClick={handelGoogleAuth}
             whileHover={{
               y: -30,
               rotateX: 8,
