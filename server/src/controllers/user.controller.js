@@ -3,7 +3,7 @@ import userModel from "../models/user.model.js";
 export const getUserController = async (req, res) => {
   try {
     const userId = req.userId;
-    const user = await userModel.findById({ userId });
+   const user = await userModel.findById(userId);
     if (!user) {
       return res.status(400).json({
         message: "User not found",
