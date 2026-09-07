@@ -21,6 +21,6 @@ app.get("/", (res, req) => {
 });
 
 app.use("/api/auth", router);
-app.use("/api/user",useRouter)
+app.use("/api/auth", useRouter);
 
 export default app;

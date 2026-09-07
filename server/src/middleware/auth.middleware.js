@@ -17,8 +17,8 @@ export const authMiddleware = async (req, res, next) => {
     req.userId = verifyToken.userId;
     next();
   } catch (error) {
-     return res.status(500).json({
-        messahe: `Erro in auth ${error}`,
-      });
+    return res.status(500).json({
+      messahe: `Erro in auth ${error}`,
+    });
   }
 };
