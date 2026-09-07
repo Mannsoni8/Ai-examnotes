@@ -1,5 +1,4 @@
 import config from "../config/config.js";
-import { getToken } from "../utils/token";
 import jwt from "jsonwebtoken";
 export const authMiddleware = async (req, res, next) => {
   try {

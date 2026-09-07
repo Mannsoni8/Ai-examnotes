@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import router from "../routes/auth.route.js";
 import cors from "cors";
 import config from "../config/config.js";
+import useRouter from "../routes/suer.route.js";
 
 const app = express();
 app.use(express.json());
@@ -20,5 +21,6 @@ app.get("/", (res, req) => {
 });
 
 app.use("/api/auth", router);
+app.use("/api/user",useRouter)
 
 export default app;
