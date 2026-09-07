@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import Feacture from "../components/Feacture";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../utils/firebase";
+import api from "../api/axiosinstance";
 const Auth = () => {
   const handelGoogleAuth = async () => {
     try {
@@ -10,6 +11,10 @@ const Auth = () => {
       const user = res.user;
       const name = user.displayName;
       const email = user.email;
+      const ress = await api.post("/google", {
+        name,
+        email,
+      });
     } catch (error) {
       console.log("error in auth", error);
     }
