@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { googleAuthController } from "../controllers/auth.controller";
+import { googleAuthController, logout } from "../controllers/auth.controller";
 
 const router = Router();
 
 router.post("/google", googleAuthController);
+router.get("/logout", logout);
 
 export default router;
