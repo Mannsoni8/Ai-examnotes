@@ -23,3 +23,16 @@ export const googleAuthController = async (req, res) => {
     return res.status(400).json({ message: `Error in google siguo ${error}` });
   }
 };
+
+export const logout = async (req, res) => {
+  try {
+    await res.clearCookies("token");
+    return res.status(200).json({
+      message: "Logout successfully",
+    });
+  } catch (error) {
+    return res.status({
+      message: `Error in logout - ${error}`,
+    });
+  }
+};
