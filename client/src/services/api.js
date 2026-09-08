@@ -1,6 +1,6 @@
 import api from "../api/axiosinstance";
 
-export const getCurrentUser = async () => {
+export const getCurrentUser = async (dispatch) => {
   try {
     const re = await api.get("/curr-user");
     console.log(re.data);
