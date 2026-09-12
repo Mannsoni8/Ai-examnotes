@@ -1,10 +1,12 @@
 import { motion } from "motion/react";
 import logo from "../assets/logo.png";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const Navbar = () => {
   const { userData } = useSelector((state) => state.user);
   const credits = userData.credits;
+  const [showCredits, setShowCredits] = useState(false);
 
   return (
     <motion.div
@@ -28,6 +30,7 @@ const Navbar = () => {
       <div className="flex items-center gap-6 relative">
         <div className="relative">
           <motion.div
+            onClick={() => setShowCredits(!showCredits)}
             whileHover={{ scale: 1.07 }}
             whileTap={{ scale: 0.97 }}
             className="flex items-center gap-1 px-2 py-2 rounded-full
