@@ -58,9 +58,33 @@ const Navbar = () => {
                 className="absolute right-0 mt-4 w-64 rounded-2xl
               bg-black/50 backdrop-blur-xl
               border border-white/10
-              shadow-[0_25px_60px_rgba(0,0,0,0.7)] p-4 text-white"></motion.div>
+              shadow-[0_25px_60px_rgba(0,0,0,0.7)] p-4 text-white">
+                <h4 className="font-semibold mb-2">Buy Credits</h4>
+                <p className="text-sm text-gray-300 mb-4">
+                  Use credits to generate AI notes, diagram & PDFs.
+                </p>
+                <button
+                  onClick={() => setShowCredits(false)}
+                  className="w-full py-2 rounded-lg bg-gradient-to-br from-white to-gray-200 text-black font-semibold hover:opacity-90">
+                  Buy More Credits
+                </button>
+              </motion.div>
             </AnimatePresence>
           )}
+        </div>
+        <div className="relative">
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.97 }}
+            className="flex items-center gap-1 px-2 py-2 rounded-full
+          bg-white/10 
+            border border-white/20 
+          text-white text-sm 
+            shadow-md cursor-pointer">
+            <span className="text-lg">
+              {userData?.name.slice(0, 1).toUpperCase()}
+            </span>
+          </motion.div>
         </div>
       </div>
     </motion.div>
