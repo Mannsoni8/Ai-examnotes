@@ -48,9 +48,8 @@ const Navbar = () => {
               ➕
             </motion.span>
           </motion.div>
-          {showCredits && (
-            <AnimatePresence>
-              {" "}
+          <AnimatePresence>
+            {showCredits && (
               <motion.div
                 initial={{ opacity: 0, y: -10, scale: 0.95 }}
                 animate={{ opacity: 1, y: 10, scale: 1 }}
@@ -70,8 +69,8 @@ const Navbar = () => {
                   Buy More Credits
                 </button>
               </motion.div>
-            </AnimatePresence>
-          )}
+            )}
+          </AnimatePresence>
         </div>
         <div className="relative">
           <motion.div
@@ -88,6 +87,29 @@ const Navbar = () => {
             </span>
           </motion.div>
         </div>
+        <AnimatePresence>
+          {showCredits && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 10, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="absolute right-0 mt-4 w-64 rounded-2xl
+              bg-black/50 backdrop-blur-xl
+              border border-white/10
+              shadow-[0_25px_60px_rgba(0,0,0,0.7)] p-4 text-white">
+              <h4 className="font-semibold mb-2">Buy Credits</h4>
+              <p className="text-sm text-gray-300 mb-4">
+                Use credits to generate AI notes, diagram & PDFs.
+              </p>
+              <button
+                onClick={() => setShowCredits(false)}
+                className="w-full py-2 rounded-lg bg-gradient-to-br from-white to-gray-200 text-black font-semibold hover:opacity-90">
+                Buy More Credits
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );
