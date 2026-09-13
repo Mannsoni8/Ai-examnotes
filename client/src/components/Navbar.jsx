@@ -1,13 +1,28 @@
 import { AnimatePresence, motion } from "motion/react";
 import logo from "../assets/logo.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import MenuItem from "./MenuItem";
+import api from "../api/axiosinstance";
+import { setUserData } from "../redux/userSlice";
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
   const { userData } = useSelector((state) => state.user);
   const credits = userData.credits;
   const [showCredits, setShowCredits] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handelSignout = async () => {
+    try {
+      await api.get("/logout");
+      dispatch(setUserData(null));
+      navigate("/");
+    } catch (error) {
+      console.log(`Error in api ${error}`);
+    }
+  };
 
   return (
     <motion.div
@@ -107,15 +122,15 @@ const Navbar = () => {
               bg-black/50 backdrop-blur-xl
               border border-white/10
               shadow-[0_25px_60px_rgba(0,0,0,0.7)] p-4 text-white">
-              <h4 className="font-semibold mb-2">Buy Credits</h4>
-              <p className="text-sm text-gray-300 mb-4">
-                Use credits to generate AI notes, diagram & PDFs.
-              </p>
-              <button
-                onClick={() => setShowCredits(false)}
-                className="w-full py-2 rounded-lg bg-gradient-to-br from-white to-gray-200 text-black font-semibold hover:opacity-90">
-                Buy More Credits
-              </button>
+              <MenuItem
+                text="History"
+                onClick={() => {
+                  handelSignout;
+                  setShowProfile(false);
+                }}
+              />
+              <div className="h-px bg-white/10 mx-3" />
+              <MenuItem text="sign out" red />
             </motion.div>
           )}
         </AnimatePresence>
