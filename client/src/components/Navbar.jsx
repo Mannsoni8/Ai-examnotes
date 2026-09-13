@@ -7,6 +7,7 @@ const Navbar = () => {
   const { userData } = useSelector((state) => state.user);
   const credits = userData.credits;
   const [showCredits, setShowCredits] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   return (
     <motion.div
@@ -74,6 +75,7 @@ const Navbar = () => {
         </div>
         <div className="relative">
           <motion.div
+            onClick={() => setShowProfile(!showProfile)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.97 }}
             className="flex items-center gap-1 px-2 py-2 rounded-full
