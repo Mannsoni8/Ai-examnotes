@@ -4,7 +4,10 @@ import Feacture from "../components/Feacture";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../utils/firebase";
 import api from "../api/axiosinstance";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../redux/userSlice";
 const Auth = () => {
+  const dispatch = useDispatch()
   const handelGoogleAuth = async () => {
     try {
       const res = await signInWithPopup(auth, provider);
@@ -15,7 +18,7 @@ const Auth = () => {
         name,
         email,
       });
-      console.log(result.data);
+      dispatch(setUserData(result.data))
     } catch (error) {
       console.log("error in auth", error);
     }

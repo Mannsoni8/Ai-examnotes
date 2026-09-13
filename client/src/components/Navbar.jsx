@@ -126,7 +126,6 @@ const Navbar = () => {
                 text="History"
                 onClick={() => {
                   handelSignout;
-                  setShowProfile(false);
                 }}
               />
               <div className="h-px bg-white/10 mx-3" />
