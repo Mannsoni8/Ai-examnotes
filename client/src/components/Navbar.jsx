@@ -88,7 +88,7 @@ const Navbar = () => {
           </motion.div>
         </div>
         <AnimatePresence>
-          {showCredits && (
+          {showProfile && (
             <motion.div
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 10, scale: 1 }}
