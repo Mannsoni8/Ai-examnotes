@@ -31,7 +31,10 @@ const Navbar = () => {
       <div className="flex items-center gap-6 relative">
         <div className="relative">
           <motion.div
-            onClick={() => setShowCredits(!showCredits)}
+            onClick={() => {
+              setShowCredits(!showCredits);
+              setShowProfile(false);
+            }}
             whileHover={{ scale: 1.07 }}
             whileTap={{ scale: 0.97 }}
             className="flex items-center gap-1 px-2 py-2 rounded-full
@@ -48,6 +51,7 @@ const Navbar = () => {
               ➕
             </motion.span>
           </motion.div>
+
           <AnimatePresence>
             {showCredits && (
               <motion.div
@@ -72,9 +76,13 @@ const Navbar = () => {
             )}
           </AnimatePresence>
         </div>
+
         <div className="relative">
           <motion.div
-            onClick={() => setShowProfile(!showProfile)}
+            onClick={() => {
+              setShowProfile(!showProfile);
+              setShowCredits(false);
+            }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.97 }}
             className="flex items-center gap-1 px-2 py-2 rounded-full
@@ -87,6 +95,7 @@ const Navbar = () => {
             </span>
           </motion.div>
         </div>
+
         <AnimatePresence>
           {showProfile && (
             <motion.div
