@@ -83,7 +83,10 @@ const Navbar = () => {
                   Use credits to generate AI notes, diagram & PDFs.
                 </p>
                 <button
-                  onClick={() => setShowCredits(false)}
+                  onClick={() => {
+                    setShowCredits(false);
+                    navigate("pricing");
+                  }}
                   className="w-full py-2 rounded-lg bg-gradient-to-br from-white to-gray-200 text-black font-semibold hover:opacity-90">
                   Buy More Credits
                 </button>

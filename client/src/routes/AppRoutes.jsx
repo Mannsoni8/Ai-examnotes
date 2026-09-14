@@ -28,7 +28,7 @@ const AppRoutes = () => {
           element: <History />,
         },
         {
-          path: "priceing",
+          path: "pricing",
           element: <Pricing />,
         },
       ],
