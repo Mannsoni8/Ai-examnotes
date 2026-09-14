@@ -110,7 +110,6 @@ const Navbar = () => {
             </span>
           </motion.div>
         </div>
-
         <AnimatePresence>
           {showProfile && (
             <motion.div
@@ -125,11 +124,11 @@ const Navbar = () => {
               <MenuItem
                 text="History"
                 onClick={() => {
-                  handelSignout;
+                  setShowProfile(false);
                 }}
               />
               <div className="h-px bg-white/10 mx-3" />
-              <MenuItem text="sign out" red />
+              <MenuItem text="Sign out" red onClick={handelSignout} />
             </motion.div>
           )}
         </AnimatePresence>

@@ -1,7 +1,7 @@
 const MenuItem = ({ onClick, text, red }) => {
   return (
     <div
-    onClick={onClick}
+      onClick={onClick}
       className={`
     w-full text-left px-5 py-3 text-sm
     transition-colors rounded-lg
@@ -11,8 +11,7 @@ const MenuItem = ({ onClick, text, red }) => {
         : "text-gray-200 hover:bg-white/10"
     }
     `}>
-        {text}
-      <h1>hello</h1>
+      {text}
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import { Navigate, Outlet } from "react-router";
-import Home from "../../pages/Home";
 import { useSelector } from "react-redux";
 
 const MainLayout = () => {
@@ -9,14 +8,8 @@ const MainLayout = () => {
     return <Navigate to="/" replace />;
   }
 
-  if (userData) {
-    return <Navigate to="/home" replace />;
-  }
   return (
     <div>
-      <div>
-        <Home />
-      </div>
       <Outlet />
     </div>
   );
