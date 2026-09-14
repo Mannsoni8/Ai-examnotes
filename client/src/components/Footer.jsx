@@ -53,7 +53,7 @@ const Footer = () => {
 
         <div className="text-center">
           <h1 className="text-sm font-semibold text-white mb-4">Quick Links</h1>
-          <ul className="space-y-2 text-sm">
+          <ul className="space-y-2 text-sm cursor-pointer">
             <li
               onClick={() => {
                 navigate("notes");
@@ -82,7 +82,7 @@ const Footer = () => {
           <h1 className="text-sm font-semibold text-white mb-4">
             Support & Account
           </h1>
-          <ul className="space-y-2 text-sm">
+          <ul className="space-y-2 text-sm cursor-pointer">
             <li
               onClick={() => {
                 navigate("/");
