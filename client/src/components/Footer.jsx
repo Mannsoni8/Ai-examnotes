@@ -103,7 +103,7 @@ const Footer = () => {
       </div>
       <div className="my-6 h-px bg-white/10" />
       <p className="text-center text-sm text-gray-500">
-        @ {new Date().getFullYear()} ExamNotes AI. All right reserved.
+        © {new Date().getFullYear()} ExamNotes AI. All rights reserved.
       </p>
     </motion.div>
   );
