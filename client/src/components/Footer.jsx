@@ -33,6 +33,18 @@ const Footer = () => {
             material, diagrams, and printable PDFs using AI.
           </p>
         </motion.div>
+
+        <div className="text-center">
+            <h1 className="text-sm font-semibold text-white mb-4">Quick Links</h1>
+          <ul className="space-y-2 text-sm">
+            <li className="text-gray-300 hover:text-white transition-colors">
+              Notes
+            </li>
+            <li className="text-gray-300 hover:text-white transition-colors">
+              History
+            </li>
+          </ul>
+        </div>
       </div>
     </motion.div>
   );
