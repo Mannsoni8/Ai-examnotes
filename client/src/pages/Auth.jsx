@@ -6,8 +6,12 @@ import { auth, provider } from "../utils/firebase";
 import api from "../api/axiosinstance";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../redux/userSlice";
+import { useNavigate } from "react-router";
+
 const Auth = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handelGoogleAuth = async () => {
     try {
       const res = await signInWithPopup(auth, provider);
@@ -18,7 +22,9 @@ const Auth = () => {
         name,
         email,
       });
-      dispatch(setUserData(result.data))
+      const userData = result.data?.user || result.data;
+      dispatch(setUserData(userData));
+      navigate("/home");
     } catch (error) {
       console.log("error in auth", error);
     }

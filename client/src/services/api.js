@@ -1,12 +1,13 @@
 import api from "../api/axiosinstance";
-import { setUserData } from "../redux/userSlice";
+import { setUserData, setLoading } from "../redux/userSlice";
 
 export const getCurrentUser = async (dispatch) => {
   try {
+    dispatch(setLoading(true));
     const re = await api.get("/curr-user");
-    // console.log(re.data);
     dispatch(setUserData(re.data));
   } catch (error) {
-    console.log("errorn in getting current user", error);
+    console.log("Error getting current user:", error);
+    dispatch(setUserData(null));
   }
 };

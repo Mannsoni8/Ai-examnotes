@@ -16,7 +16,7 @@ app.use(
   }),
 );
 
-app.get("/", (res, req) => {
+app.get("/", (req, res) => {
   res.send("backend is running");
 });
 
