@@ -4,6 +4,7 @@ import MainLayout from "../app/layouts/MainLayout";
 import Home from "../pages/Home";
 import Notes from "../pages/Notes";
 import Pricing from "../pages/Pricing";
+import History from "../pages/History";
 
 const AppRoutes = () => {
   const router = createBrowserRouter([

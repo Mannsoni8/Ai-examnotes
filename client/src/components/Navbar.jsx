@@ -129,6 +129,7 @@ const Navbar = () => {
                 text="History"
                 onClick={() => {
                   setShowProfile(false);
+                  navigate("history")
                 }}
               />
               <div className="h-px bg-white/10 mx-3" />
