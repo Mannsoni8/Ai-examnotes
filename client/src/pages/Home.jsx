@@ -44,9 +44,6 @@ const Home = () => {
             <motion.button
               onClick={() => navigate("notes")}
               whileHover={{
-                y: -30,
-                rotateX: 8,
-                rotateY: -8,
                 scale: 1.07,
               }}
               whileTap={{
