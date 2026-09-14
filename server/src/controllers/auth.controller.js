@@ -4,17 +4,32 @@ import { getToken } from "../utils/token.js";
 export const googleAuthController = async (req, res) => {
   try {
     const { name, email } = req.body;
+
+    if (
+      !email ||
+      typeof email !== "string" ||
+      !name ||
+      typeof name !== "string"
+    ) {
+      return res.status(400).json({
+        message: "Invalid user data provided",
+      });
+    }
+
     let user = await userModel.findOne({ email });
     if (!user) {
       user = await userModel.create({ name, email });
     }
+
     let token = await getToken(user._id);
+
     res.cookie("token", token, {
       httpOnly: true,
       secure: false,
       samesite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
+
     return res.status(200).json({
       message: "User is register",
       user,
@@ -26,7 +41,11 @@ export const googleAuthController = async (req, res) => {
 
 export const logout = async (req, res) => {
   try {
-    await res.clearCookies("token");
+    await res.clearCookies("token", {
+      httpOnly: true,
+      samesite: "strict",
+    });
+
     return res.status(200).json({
       message: "Logout successfully",
     });
