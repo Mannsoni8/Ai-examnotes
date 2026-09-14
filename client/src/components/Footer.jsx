@@ -96,11 +96,8 @@ const Footer = () => {
               SignOut
             </li>
             <li
-              onClick={() => {
-                navigate("pricing");
-              }}
               className="text-gray-300 hover:text-white transition-colors">
-              Add Credits
+             support@examnotes.com
             </li>
           </ul>
         </div>
