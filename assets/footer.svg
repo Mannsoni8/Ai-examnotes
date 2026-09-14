@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="footer-bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#030712" />
+    </linearGradient>
+    <linearGradient id="footer-line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0" />
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0" />
+    </linearGradient>
+    <style>
+      .footer-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+      @keyframes pulseLine {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 1; }
+      }
+      .anim-line { animation: pulseLine 3s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="120" rx="16" fill="url(#footer-bg)" />
+
+  <!-- Animated Glowing Top Line -->
+  <line class="anim-line" x1="100" y1="2" x2="1100" y2="2" stroke="url(#footer-line)" stroke-width="2" />
+
+  <!-- Center Text -->
+  <text x="600" y="55" text-anchor="middle" class="footer-text" font-size="16" font-weight="600" fill="#e2e8f0">
+    Designed &amp; Built for Peak Academic Performance
+  </text>
+  <text x="600" y="85" text-anchor="middle" class="footer-text" font-size="13" fill="#64748b">
+    ExamNotes AI • Built with React 19, Vite, Express 5 &amp; MongoDB
+  </text>
+</svg>
