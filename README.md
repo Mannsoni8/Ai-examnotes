@@ -1,7 +1,10 @@
 <div align="center">
 
-  <!-- Animated Header Banner -->
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,25,40,90&height=220&section=header&text=ExamNotes%20AI&fontSize=65&fontColor=ffffff&animation=twinkling&fontAlignY=38&desc=AI-Powered%20Exam-Oriented%20Notes%20%26%20Revision%20Engine&descFontSize=20&descFontColor=a5b4fc&descAlignY=58" alt="ExamNotes AI Banner" width="100%" />
+  <!-- Animated Header Banner (Local Scalable SVG with Ambient Mesh Glow & Particle Effects) -->
+  <img src="./assets/banner.svg" alt="ExamNotes AI Banner" width="100%" />
+
+  <br/>
+  <br/>
 
   <!-- Dynamic Typing Subtitle -->
   <a href="https://git.io/typing-svg">
@@ -357,7 +360,7 @@ Contributions make the open-source community an inspiring place to learn, inspir
 
 <div align="center">
 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,25,40,90&height=120&section=footer" alt="Footer Banner" width="100%" />
+  <img src="./assets/footer.svg" alt="Footer Banner" width="100%" />
 
   <sub>Built with ❤️ by <a href="https://github.com/Mannsoni8">Mannsoni8</a> • Powered by AI & Modern Web Technologies</sub>
 
