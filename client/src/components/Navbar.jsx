@@ -9,11 +9,14 @@ import { useNavigate } from "react-router";
 
 const Navbar = () => {
   const { userData } = useSelector((state) => state.user);
+  
   const credits = userData.credits;
   const [showCredits, setShowCredits] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handelSignout = async () => {
     try {
       await api.get("/logout");

@@ -1,9 +1,23 @@
 import { motion } from "motion/react";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import api from "../api/axiosinstance";
+import { setUserData } from "../redux/userSlice";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handelSignout = async () => {
+    try {
+      await api.get("/logout");
+      dispatch(setUserData(null));
+      navigate("/");
+    } catch (error) {
+      console.log(`Error in api ${error}`);
+    }
+  };
 
   return (
     <motion.div
@@ -53,6 +67,40 @@ const Footer = () => {
               }}
               className="text-gray-300 hover:text-white transition-colors">
               History
+            </li>
+            <li
+              onClick={() => {
+                navigate("pricing");
+              }}
+              className="text-gray-300 hover:text-white transition-colors">
+              Add Credits
+            </li>
+          </ul>
+        </div>
+
+        <div className="text-center">
+          <h1 className="text-sm font-semibold text-white mb-4">
+            Support & Account
+          </h1>
+          <ul className="space-y-2 text-sm">
+            <li
+              onClick={() => {
+                navigate("/");
+              }}
+              className="text-gray-300 hover:text-white transition-colors">
+              SignIn
+            </li>
+            <li
+              onClick={handelSignout}
+              className="text-red-400 hover:text-red-300 transition-colors">
+              SignOut
+            </li>
+            <li
+              onClick={() => {
+                navigate("pricing");
+              }}
+              className="text-gray-300 hover:text-white transition-colors">
+              Add Credits
             </li>
           </ul>
         </div>
