@@ -5,15 +5,18 @@ export const authMiddleware = async (req, res, next) => {
     let { token } = req.cookies;
     if (!token) {
       return res.status(400).json({
-        messahe: "Token is not found",
+        message: "Authentication token not found",
       });
     }
+
     let verifyToken = jwt.verify(token, config.JWT_SECRET);
+
     if (!verifyToken) {
       return res.status(400).json({
-        messahe: "User does not have valid token",
+        message: "Invalid or expired token",
       });
     }
+
     req.userId = verifyToken.userId;
     next();
   } catch (error) {
