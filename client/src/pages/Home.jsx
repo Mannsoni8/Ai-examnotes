@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import { motion } from "motion/react";
 import img from "../assets/img1.png";
 import Feacture from "../components/Feacture";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -105,6 +106,7 @@ const Home = () => {
           desc="Download your notes and study materials as PDF files anytime."
         />
       </section>
+      <Footer/>
     </div>
   );
 };
