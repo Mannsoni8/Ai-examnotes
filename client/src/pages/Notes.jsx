@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import TopicForm from "../components/TopicForm";
 const Notes = () => {
   const navigate = useNavigate();
 
@@ -48,6 +49,13 @@ const Notes = () => {
           </button>
         </div>
       </motion.header>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mb-12">
+        <TopicForm />
+      </motion.div>
     </div>
   );
 };
