@@ -9,11 +9,14 @@ import { useNavigate } from "react-router";
 
 const Navbar = () => {
   const { userData } = useSelector((state) => state.user);
+  
   const credits = userData.credits;
   const [showCredits, setShowCredits] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handelSignout = async () => {
     try {
       await api.get("/logout");
@@ -83,7 +86,10 @@ const Navbar = () => {
                   Use credits to generate AI notes, diagram & PDFs.
                 </p>
                 <button
-                  onClick={() => setShowCredits(false)}
+                  onClick={() => {
+                    setShowCredits(false);
+                    navigate("pricing");
+                  }}
                   className="w-full py-2 rounded-lg bg-gradient-to-br from-white to-gray-200 text-black font-semibold hover:opacity-90">
                   Buy More Credits
                 </button>
@@ -126,6 +132,7 @@ const Navbar = () => {
                 text="History"
                 onClick={() => {
                   setShowProfile(false);
+                  navigate("history")
                 }}
               />
               <div className="h-px bg-white/10 mx-3" />
