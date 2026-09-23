@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import Toggle from "./Toggle";
 
-const TopicForm = () => {
+const TopicForm = ({ setResult, setLoading, loading, setError }) => {
   const [topic, setTopic] = useState("");
   const [classLevel, setClassLevel] = useState("");
   const [examType, setExamType] = useState("");
@@ -112,6 +112,17 @@ const TopicForm = () => {
           onChange={() => setIncludeChart((prev) => !prev)}
         />
       </div>
+      <motion.button
+        whileHover={!loading ? { scale: 1.02, y: -2 } : {}}
+        whileTap={!loading ? { scale: 0.95 } : {}}
+        disabled={loading}
+        className={`w-full mt-4 py-3 rounded-xl font-semibold flex items-center justify-center gap-3 transition ${
+          loading
+            ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+            : "bg-gradient-to-br from-white to-gray-200 text-black shadow-[0_15px_35px_rgba(0,0,0,0.4)]"
+        }`}>
+        {loading ? "Generating Notes.." : "Generate Notes"}
+      </motion.button>
     </motion.div>
   );
 };

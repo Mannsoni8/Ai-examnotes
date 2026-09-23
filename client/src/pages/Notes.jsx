@@ -2,12 +2,17 @@ import { motion } from "motion/react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import TopicForm from "../components/TopicForm";
+import { useState } from "react";
 const Notes = () => {
   const navigate = useNavigate();
 
   const { userData } = useSelector((state) => state.user);
 
   const credits = userData.credits;
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [result, setResult] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 px-6 py-8">
@@ -51,8 +56,22 @@ const Notes = () => {
       </motion.header>
 
       <motion.div className="mb-12">
-        <TopicForm />
+        <TopicForm
+          loading={loading}
+          setError={setError}
+          setLoading={setLoading}
+          setResult={setResult}
+        />
       </motion.div>
+      {!result && (
+        <motion.div
+          whileHover={{ scale: 1.02 }}
+          className="h-64 rounded-2xl
+      flex flex-col items-center justify-center bg-white/60 backdrop-blur-lg border border-dashed border-gray-300 text-gray-500 shadow-inner">
+          <span className="text-4xl mb-3">📘</span>
+          <p className="text-sm"> Generated notes will appear here</p>
+        </motion.div>
+      )}
     </div>
   );
 };
