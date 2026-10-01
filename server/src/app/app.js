@@ -4,6 +4,7 @@ import router from "../routes/auth.route.js";
 import cors from "cors";
 import config from "../config/config.js";
 import useRouter from "../routes/suer.route.js";
+import notesRouter from "../routes/generate.route.js";
 
 const app = express();
 app.use(express.json());
@@ -22,5 +23,6 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", router);
 app.use("/api/auth", useRouter);
+app.use("/api/notes", notesRouter);
 
 export default app;
