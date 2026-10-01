@@ -21,7 +21,7 @@ const TopicForm = ({ setResult, setLoading, loading, setError }) => {
     setResult(null);
 
     try {
-      const result = generateNotes({
+      const result = await generateNotes({
         topic,
         classLevel,
         examType,
@@ -30,11 +30,17 @@ const TopicForm = ({ setResult, setLoading, loading, setError }) => {
         includeDiagram,
       });
 
-      setResult(result.data);
-      setLoading(false);
+      setResult(result);
+      //setLoading(false);
     } catch (error) {
-      console.log(error);
-      setError("Faild to fetch notes from server");
+      console.log(
+        "Generate Notes Error:",
+        error.response?.data || error.message,
+      );
+      setError(
+        error.response?.data?.message || "Failed to fetch notes from server",
+      );
+    } finally {
       setLoading(false);
     }
   };

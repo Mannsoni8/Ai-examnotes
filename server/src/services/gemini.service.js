@@ -3,53 +3,71 @@ import config from "../config/config.js";
 const GEMINI_URL =
   "https://generativelanguage.googleapis.com/v1beta/interactions";
 
+const MODELS = [
+  "gemini-3.8-flash",
+  "gemini-3.7-flash",
+  "gemini-3.6-flash",
+  "gemini-3.5-flash",
+];
+
 export const generateGeminiResponse = async (prompt) => {
-  try {
-    const response = await fetch(GEMINI_URL, {
-      method: "POST",
+  let lastError = null;
 
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": config.GEMINI_API_KEY,
-      },
+  for (const model of MODELS) {
+    try {
+      console.log(`Trying Gemini model: ${model}`);
 
-      body: JSON.stringify({
-        model: "gemini-3.8-flash",
-        input: prompt,
-      }),
-    });
+      const response = await fetch(GEMINI_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": config.GEMINI_API_KEY,
+        },
+        body: JSON.stringify({
+          model,
+          input: prompt,
+        }),
+      });
 
-    if (!response.ok) {
-      const error = await response.text();
+      if (!response.ok) {
+        const errorText = await response.text();
 
-      console.error("Gemini API Error:", error);
+        console.error(`${model} Error:`, errorText);
 
-      throw new Error(error);
+        lastError = new Error(errorText);
+
+        continue;
+      }
+
+      const data = await response.json();
+
+      console.log(`Gemini model used: ${model}`);
+
+      const text = data.steps
+        ?.find((step) => step.type === "model_output")
+        ?.content?.find((content) => content.type === "text")?.text;
+
+      if (!text) {
+        console.error("Gemini Response:", data);
+        throw new Error("No text returned from Gemini");
+      }
+
+      const cleanText = text
+        .replace(/```json/g, "")
+        .replace(/```/g, "")
+        .trim();
+
+      return JSON.parse(cleanText);
+    } catch (error) {
+      console.error(`${model} failed:`, error.message);
+
+      lastError = error;
     }
-
-    const data = await response.json();
-
-    console.log("Gemini Response:", data);
-
-    const text = data.steps
-      ?.find((step) => step.type === "model_output")
-      ?.content
-      ?.find((content) => content.type === "text")
-      ?.text;
-
-    if (!text) {
-      throw new Error("No text returned from Gemini");
-    }
-
-    const cleanText = text
-      .replace(/```json/g, "")
-      .replace(/```/g, "")
-      .trim();
-
-    return JSON.parse(cleanText);
-  } catch (error) {
-    console.error("Gemini Fetch Error:", error.message);
-
-    throw new Error("Gemini API fetch failed");
   }
+
+  throw new Error(
+    `All Gemini models are currently unavailable. Last error: ${
+      lastError?.message || "Unknown error"
+    }`,
+  );
 };
