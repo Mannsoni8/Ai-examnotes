@@ -4,6 +4,6 @@ import { getUserController } from "../controllers/user.controller.js";
 
 const useRouter = Router();
 
-useRouter.get("/currentuser", authMiddleware, getUserController);
+useRouter.get("/curr-user", authMiddleware, getUserController);
 
 export default useRouter;

@@ -11,3 +11,13 @@ export const getCurrentUser = async (dispatch) => {
     dispatch(setUserData(null));
   }
 };
+
+export const generateNotes = async (payload) => {
+  try {
+    const result = await api.post("/notes/generate-notes",  payload );
+    console.log(result.data)
+    return result.data
+  } catch (error) {
+    console.log(error)
+  }
+};
