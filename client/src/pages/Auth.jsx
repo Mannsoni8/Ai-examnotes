@@ -18,11 +18,11 @@ const Auth = () => {
       const user = res.user;
       const name = user.displayName;
       const email = user.email;
-      const result = await api.post("/google", {
+      const result = await api.post("/auth/google", {
         name,
         email,
       });
-      const userData = result.data?.user || result.data;
+      const userData = result.data?.user || result.data.data.user;
       dispatch(setUserData(userData));
       navigate("/home");
     } catch (error) {

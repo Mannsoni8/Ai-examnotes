@@ -1,46 +1,55 @@
 import config from "../config/config.js";
 
 const GEMINI_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview:generateContent";
+  "https://generativelanguage.googleapis.com/v1beta/interactions";
 
-export const generateGeminiResponse = async (promt) => {
+export const generateGeminiResponse = async (prompt) => {
   try {
-    const responce = await fetch(`${GEMINI_URL}?key=${config.GEMINI_API_KEY}`, {
+    const response = await fetch(GEMINI_URL, {
       method: "POST",
+
       headers: {
         "Content-Type": "application/json",
+        "x-goog-api-key": config.GEMINI_API_KEY,
       },
+
       body: JSON.stringify({
-        contents: [
-          {
-            parts: [
-              {
-                text: promt,
-              },
-            ],
-          },
-        ],
+        model: "gemini-3.8-flash",
+        input: prompt,
       }),
     });
 
-    if (!responce.ok) {
-      const err = await responce.text();
-      throw new Error(err);
+    if (!response.ok) {
+      const error = await response.text();
+
+      console.error("Gemini API Error:", error);
+
+      throw new Error(error);
     }
 
-    const data = await responce.json();
+    const data = await response.json();
 
-    const text = data.candidate?.[0]?.content?.[0]?.text;
+    console.log("Gemini Response:", data);
+
+    const text = data.steps
+      ?.find((step) => step.type === "model_output")
+      ?.content
+      ?.find((content) => content.type === "text")
+      ?.text;
 
     if (!text) {
       throw new Error("No text returned from Gemini");
     }
 
-    const cleanText = text.replace(/```json/g, "".replace(/```/g, "").trim());
+    const cleanText = text
+      .replace(/```json/g, "")
+      .replace(/```/g, "")
+      .trim();
 
     return JSON.parse(cleanText);
   } catch (error) {
-    console.error("Gemini Fetch Error", error.message);
+    console.error("Gemini Fetch Error:", error.message);
+
     throw new Error("Gemini API fetch failed");
   }
 };

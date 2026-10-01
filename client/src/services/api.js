@@ -4,8 +4,10 @@ import { setUserData, setLoading } from "../redux/userSlice";
 export const getCurrentUser = async (dispatch) => {
   try {
     dispatch(setLoading(true));
-    const re = await api.get("/curr-user");
-    dispatch(setUserData(re.data));
+
+    const res = await api.get("/auth/curr-user");
+
+    dispatch(setUserData(res.data));
   } catch (error) {
     console.log("Error getting current user:", error);
     dispatch(setUserData(null));
@@ -14,10 +16,11 @@ export const getCurrentUser = async (dispatch) => {
 
 export const generateNotes = async (payload) => {
   try {
-    const result = await api.post("/notes/generate-notes",  payload );
-    console.log(result.data)
-    return result.data
+    const result = await api.post("/notes/generate-notes", payload);
+
+    console.log(result.data);
+    return result.data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };

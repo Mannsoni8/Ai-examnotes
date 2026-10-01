@@ -12,7 +12,7 @@ export const generateNotes = async (req, res) => {
       revisionMode = false,
       includeDiagram = false,
       includeChart = false,
-    } = req.body();
+    } = req.body;
 
     if (!topic) {
       return res.status(400).json({
