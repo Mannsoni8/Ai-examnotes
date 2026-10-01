@@ -27,19 +27,9 @@ const userSchema = new mongoose.Schema(
 
     notes: {
       type: [mongoose.Schema.Types.ObjectId],
-      ref: "Notes",
+      ref: "notes",
       default: [],
     },
-
-    // password: {
-    //   type: String,
-    //   required: true,
-    //   match: [
-    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/,
-    //     "Password must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character",
-    //   ],
-    //   select: false,
-    // },
   },
 
   {

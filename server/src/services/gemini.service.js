@@ -44,4 +44,3 @@ export const generateGeminiResponse = async (promt) => {
     throw new Error("Gemini API fetch failed");
   }
 };
-//fgh
