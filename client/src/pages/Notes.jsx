@@ -72,6 +72,8 @@ const Notes = () => {
           <p className="text-sm"> Generated notes will appear here</p>
         </motion.div>
       )}
+
+      {result && <motion.div className="grid col-"></motion.div>}
     </div>
   );
 };
