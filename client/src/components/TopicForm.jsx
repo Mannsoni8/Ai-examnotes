@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Toggle from "./Toggle";
 import { generateNotes } from "../services/api";
 
@@ -7,15 +7,20 @@ const TopicForm = ({ setResult, setLoading, loading, setError }) => {
   const [topic, setTopic] = useState("");
   const [classLevel, setClassLevel] = useState("");
   const [examType, setExamType] = useState("");
+
   const [revisionMode, setRevisionMode] = useState(false);
   const [includeDiagram, setIncludeDiagram] = useState(false);
   const [includeChart, setIncludeChart] = useState(false);
+
+  const [progress, setProgress] = useState(0);
+  const [progressText, setProgressText] = useState("");
 
   const handleSubmit = async () => {
     if (!topic.trim()) {
       setError("Please enter the topic");
       return;
     }
+
     setError("");
     setLoading(true);
     setResult(null);
@@ -31,12 +36,12 @@ const TopicForm = ({ setResult, setLoading, loading, setError }) => {
       });
 
       setResult(result);
-      //setLoading(false);
     } catch (error) {
-      console.log(
+      console.error(
         "Generate Notes Error:",
         error.response?.data || error.message,
       );
+
       setError(
         error.response?.data?.message || "Failed to fetch notes from server",
       );
@@ -44,6 +49,36 @@ const TopicForm = ({ setResult, setLoading, loading, setError }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!loading) {
+      setProgress(0);
+      setProgressText("");
+      return;
+    }
+
+    let value = 0;
+
+    const interval = setInterval(() => {
+      value += Math.random() * 8;
+
+      if (value >= 95) {
+        value = 95;
+        setProgressText("Almost done...");
+        clearInterval(interval);
+      } else if (value > 70) {
+        setProgressText("Finalizing notes...");
+      } else if (value > 40) {
+        setProgressText("Processing content...");
+      } else {
+        setProgressText("Generating notes...");
+      }
+
+      setProgress(Math.floor(value));
+    }, 700);
+
+    return () => clearInterval(interval);
+  }, [loading]);
 
   return (
     <motion.div
@@ -147,6 +182,8 @@ const TopicForm = ({ setResult, setLoading, loading, setError }) => {
           onChange={() => setIncludeChart((prev) => !prev)}
         />
       </div>
+
+      {/* Generate Button */}
       <motion.button
         onClick={handleSubmit}
         whileHover={!loading ? { scale: 1.02, y: -2 } : {}}
@@ -159,6 +196,36 @@ const TopicForm = ({ setResult, setLoading, loading, setError }) => {
         }`}>
         {loading ? "Generating Notes.." : "Generate Notes"}
       </motion.button>
+
+      {/* Progress */}
+      {loading && (
+        <div className="mt-4 space-y-2">
+          <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ ease: "easeOut", duration: 0.6 }}
+              className="
+                h-full
+                bg-gradient-to-r
+                from-green-400
+                via-emerald-400
+                to-green-500
+              "
+            />
+          </div>
+
+          <div className="flex justify-between text-xs text-gray-300">
+            <span>{progressText}</span>
+            <span>{progress}%</span>
+          </div>
+
+          <p className="text-xs text-gray-400 text-center">
+            This may take up to 2-5 minutes. Please don't close or refresh the
+            page.
+          </p>
+        </div>
+      )}
     </motion.div>
   );
 };
