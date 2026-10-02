@@ -14,8 +14,13 @@ const userSlice = createSlice({
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
+    updateCreadits: (state, action) => {
+      if (state.userData) {
+        state.userData.credits = action.payload;
+      }
+    },
   },
 });
 
-export const { setUserData, setLoading } = userSlice.actions;
+export const { setUserData, setLoading, updateCreadits } = userSlice.actions;
 export default userSlice.reducer;

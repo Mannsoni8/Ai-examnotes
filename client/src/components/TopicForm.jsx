@@ -2,6 +2,8 @@ import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import Toggle from "./Toggle";
 import { generateNotes } from "../services/api";
+import { useDispatch } from "react-redux";
+import { updateCreadits } from "../redux/userSlice";
 
 const TopicForm = ({ setResult, setLoading, loading, setError }) => {
   const [topic, setTopic] = useState("");
@@ -14,6 +16,8 @@ const TopicForm = ({ setResult, setLoading, loading, setError }) => {
 
   const [progress, setProgress] = useState(0);
   const [progressText, setProgressText] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleSubmit = async () => {
     if (!topic.trim()) {
@@ -36,6 +40,16 @@ const TopicForm = ({ setResult, setLoading, loading, setError }) => {
       });
 
       setResult(result);
+      setClassLevel("");
+      setTopic("");
+      setExamType("");
+      setIncludeChart(false);
+      setRevisionMode(false);
+      setIncludeDiagram(false);
+
+      if (typeof result.creditsLeft === "number") {
+        dispatch(updateCreadits(result.creditsLeft));
+      }
     } catch (error) {
       console.error(
         "Generate Notes Error:",
