@@ -40,22 +40,21 @@ const Home = () => {
               Generate exam-focused notes, project documentation, flow diagrams
               and revision-ready content using AI - faster, cleaner and smarter.
             </motion.p>
-
-            <motion.button
-              onClick={() => navigate("notes")}
-              whileHover={{
-                scale: 1.07,
-              }}
-              whileTap={{
-                scale: 0.97,
-              }}
-              // transition={{ type: "spring", stiffness: 200, damping: 18 }}
-              className="mt-10 px-10 py-3 rounded-xl flex items-center gap-3 bg-gradient-to-br  from-black/90 via-black/80 to-black/90 
+          </motion.div>
+          <motion.button
+            onClick={() => navigate("notes")}
+            whileHover={{
+              scale: 1.07,
+            }}
+            whileTap={{
+              scale: 0.97,
+            }}
+            // transition={{ type: "spring", stiffness: 200, damping: 18 }}
+            className="mt-10 px-10 py-3 rounded-xl flex items-center gap-3 bg-gradient-to-br  from-black/90 via-black/80 to-black/90 
               border border-white/10 
               text-white font-semibold text-lg                    shadow-[0_25px_60px_rgba(0,0,0,0.7)]">
-              Get Started
-            </motion.button>
-          </motion.div>
+            Get Started
+          </motion.button>
         </div>
 
         <motion.div
