@@ -1,9 +1,9 @@
-import React from 'react'
-
-const FinalResult = ({result}) => {
+const FinalResult = ({ result }) => {
   return (
-    <div>FinalResult</div>
-  )
-}
+    <div>
+      <div></div>
+    </div>
+  );
+};
 
-export default FinalResult
+export default FinalResult;
