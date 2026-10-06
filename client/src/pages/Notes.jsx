@@ -13,8 +13,8 @@ const Notes = () => {
   const credits = userData.credits;
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [result, setResult] = useState(false);
+  const [error, setError] = useState("");
+  const [result, setResult] = useState(null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 px-6 py-8">
