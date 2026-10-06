@@ -1,5 +1,3 @@
-import React from "react";
-
 const SectionHeader = ({ icon, title, color }) => {
   const colors = {
     indigo: "from-indig-100 to-indigo-50 text-indigo-700",
@@ -12,7 +10,10 @@ const SectionHeader = ({ icon, title, color }) => {
   return (
     <div
       className={`*:mb-4 px-4 py-2 rounded-lg bg-gradient-to-r ${colors[color]}
-    font-semibold flex items-center gap-2`}></div>
+    font-semibold flex items-center gap-2`}>
+      <span>{icon}</span>
+      <span>{title}</span>
+    </div>
   );
 };
 
